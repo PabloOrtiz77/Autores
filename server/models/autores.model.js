@@ -3,7 +3,7 @@ const { default: mongoose } = require("mongoose");
 const Autores = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, "El nombre es obligatorio con un minimo de 3 caracteres"],
+    required: [true, "Este campo es requrido"],
     minlength: 3,
   },
 });

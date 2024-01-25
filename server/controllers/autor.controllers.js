@@ -2,7 +2,7 @@ const Autores = require("../models/autores.model");
 
 module.exports.getAutor = async (req, res) => {
   try {
-    findAutores = await Autores.find();
+    findAutores = await Autores.find().sort({ name: 1 });
     res.status(200);
     res.json(findAutores);
   } catch (error) {

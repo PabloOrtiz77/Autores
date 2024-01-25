@@ -40,8 +40,8 @@ export default function Home() {
       const response = await axios.get("http://localhost:8000/api/autores");
       const result = await response.data;
       console.log(result);
-      const sortedNames = result.sort((a, b) => a.name.localeCompare(b.name)); //para ordenar alfabeticamente
-      setName(sortedNames);
+      // const sortedNames = result.sort((a, b) => a.name.localeCompare(b.name)); //para ordenar alfabeticamente
+      setName(result);
     } catch (error) {
       console.log(error);
     }

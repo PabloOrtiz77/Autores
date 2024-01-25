@@ -10,6 +10,7 @@ const EditarAutor = ({ params }) => {
   const { id } = params;
   const [names, setName] = useState({});
   const router = useRouter();
+  const [errors,setErrors]=useState({})
 
   const handleAccept = () => {
     alert("Lo sentimos, pero no pudimos encontrar el autor que estás buscando. ¿Deseas agregar este autor a nuestra base de datos?")
@@ -23,7 +24,8 @@ const EditarAutor = ({ params }) => {
       console.log(result);
       setName(result);
     } catch (error) {
-      handleAccept();  
+      setErrors(error)
+      // handleAccept();  
     }
   };
 
@@ -35,12 +37,22 @@ const EditarAutor = ({ params }) => {
     <>
     
     <Link href={"/"}>Home</Link>
+    {Object.keys(errors).length > 0 ? 
+     <Typography variant="h6" >
+      Lo sentimos, pero no pudimos encontrar el autor que estás buscando. 
+     <Link href={"/CrearAutor"}> ¿Deseas agregar este autor a nuestra base de datos?</Link> 
+     </Typography>
+      :(
+      <>
       <Typography variant="h6" sx={{ color: "#570A8E" }}>
-        Edit this author
-      </Typography>
-      {Object.keys(names).length > 0 && (
-        <FormAuthor namerec={names.name} crear={false} id={names._id}/>
-      )}
+          Edit this author
+        </Typography>
+        {Object.keys(names).length > 0 && (
+      <FormAuthor namerec={names.name} crear={false} id={names._id}/>
+      )
+      
+      }</>)
+    }
     </>
   );
 };
